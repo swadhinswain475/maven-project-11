@@ -1,32 +1,20 @@
 pipeline{
- tools{
-        jdk 'JAVA_HOME'
-        maven 'M2_HOME'
-    }
-     agent any
-	  
-	  stages{
-	  
-	  stage("checkout"){
-	   steps{
-	   git 'https://github.com/ashisnishanka/maven-project-11.git'
-	   }
-	                  }
-	
-	   stage("compile"){
-	    steps{
-		 sh 'mvn compile'
-		}
-		}
-	   stage("test"){
-	    steps{
-		 sh 'mvn test'
-		}
-		}
-	  stage("package"){
-	    steps{
-		 sh 'mvn package'
-		}
-		}
-	  }
+	tools{
+		jdk 'JAVA_HOME'
+		maven 'M2_HOME'
 	}
+	agent any
+	stages{
+		stage("git checkout"){
+			steps{
+			git 'https://github.com/swadhinswain475/maven-project-11.git'
+			}
+		}
+		
+		stage("maven install"){
+			steps{
+			 sh 'mvn install'
+			}
+		}
+	}
+}
